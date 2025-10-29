@@ -1,113 +1,59 @@
-/* Dentro do seu style.css */
-
-/* Reseta básico para começar limpo */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #f4f4f4; /* Um cinza claro de fundo */
+    background-color: #f4f4f4;
 }
 
 main {
-    /* 1. Transforma o <main> em um container Grid */
     display: grid;
-    
-    /* 2. Define as colunas: 
-       A primeira (filtros) terá 250px de largura.
-       A segunda (produtos) ocupará o resto do espaço (1fr). 
-    */
     grid-template-columns: 250px 1fr;
-    
-    /* 3. Adiciona um espaço entre as colunas */
     gap: 20px;
-    
-    /* 4. Adiciona um pouco de espaço nas laterais da página */
     padding: 20px;
-    
-    /* 5. Garante que ocupe a largura máxima */
     max-width: 1200px;
-    margin: 0 auto; /* Centraliza na página */
+    margin: 0 auto;
 }
 
-/* Um pouco de estilo para os blocos */
 #filtros, #secao-produtos {
     background-color: #ffffff;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-/* Continuação do style.css */
 
 #lista-produtos {
-    /* 1. Remove os "pontos" da lista e o padding padrão */
     list-style: none;
     padding: 0;
     margin: 0;
-    
-    /* 2. Transforma a <ul> em um container Grid */
     display: grid;
-    
-    /* 3. O "Pulo do Gato" - A Grade Responsiva 
-       Leia-se: "Crie colunas que se repetem (repeat). 
-       Elas devem se auto-ajustar (auto-fit). 
-       Cada coluna deve ter no MÍNIMO (minmax) 220px 
-       e no MÁXIMO 1 fração (1fr) do espaço."
-    */
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    
-    /* 4. Adiciona espaço entre os cards */
     gap: 15px;
 }
-.card-produto{
-    /* 1. O básico do card: borda, sombra, etc. */
+
+.card-produto {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
-    
-    /* Faz a sombra "suave" que usamos antes */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
-    
-    /* Impede que a imagem "vaze" do card (caso ela tenha bordas arredondadas) */
-    overflow: hidden; 
-    
-    /* Bônus: animação suave ao passar o mouse */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    overflow: hidden;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
 }
+
 .card-produto:hover {
-    transform: translateY(-5px); /* Levanta o card */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* Sombra mais forte */
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
+
 .card-produto img {
-    /* * PASSO 1 (O BÁSICO): 
-     * Diz à imagem para ter 100% da largura do seu pai (o .card-produto)
-     */
     width: 100%;
-    
-    /* * PASSO 2 (A TÉCNICA MODERNA):
-     * Força a imagem a ter uma proporção fixa (aspect-ratio).
-     * 1 / 1 = Quadrado
-     * 4 / 3 = Retângulo de foto clássica
-     * 16 / 9 = Widescreen
-     * Vamos usar 1 / 1 (quadrado) para uniformizar a galeria.
-     */
     aspect-ratio: 1 / 1;
-    
-    /* * PASSO 3 (O PULO DO GATO):
-     * Se a imagem original não for quadrada, o 'aspect-ratio' vai distorcê-la.
-     * 'object-fit: cover' resolve isso. Ele diz à imagem:
-     * "Preencha o container (o quadrado 1/1) e corte o que sobrar, 
-     * mas NUNCA se distorça."
-     * É o equivalente a 'background-size: cover' para tags <img>.
-     */
     object-fit: cover;
-    
-    /* * (Opcional, mas boa prática)
-     * Remove um pequeno espaço que tags <img> às vezes têm embaixo.
-     */
-    display: block; 
+    display: block;
 }
+
 .card-produto h3 {
     font-size: 16px;
-    margin: 10px 15px 5px; /* Espaço (top, sides, bottom) */
+    margin: 10px 15px 5px;
     color: #333;
 }
 
@@ -120,18 +66,19 @@ main {
 .card-produto .preco {
     font-size: 18px;
     font-weight: bold;
-    color: #007bff; /* Um azul para destacar */
+    color: #007bff;
     margin: 0 15px 15px;
 }
 
-.card-produto button {
-    /* Faz o botão ocupar a largura, mas com margem */
-    display: block;
-    width: calc(100% - 30px); /* 100% - (15px de margem de cada lado) */
+.card-produto .comprar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: calc(100% - 30px);
     margin: 0 15px 15px;
-    
     padding: 10px;
-    background-color: #28a745; /* Verde "comprar" */
+    background-color: #28a745;
     color: white;
     border: none;
     border-radius: 5px;
@@ -141,6 +88,43 @@ main {
     transition: background-color 0.2s ease;
 }
 
-.card-produto button:hover {
-    background-color: #218838; /* Verde mais escuro */
+.card-produto .comprar-btn:hover {
+    background-color: #218838;
+}
+
+.card-produto .comprar-btn svg {
+    width: 20px;
+    height: 20px;
+    color: white;
+}
+
+.add-carrinho-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.card-produto:hover .add-carrinho-btn {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.add-carrinho-btn svg {
+    width: 20px;
+    height: 20px;
+    color: #333;
 }
