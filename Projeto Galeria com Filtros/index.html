@@ -1,35 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="style.css">
-    
-    <title>Groover Clone - Guitarras</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
 
+    <title>Vintage Store - Guitar Shop</title>
+    <link rel="icon" href="/Projeto Galeria com Filtros/img/icon_guitarraSite.svg" type="image/icon">
+  </head>
+  <body>
     <main>
-        
-        <aside id="filtros">
-            <h2>Filtros</h2>
-            </aside>
+      <aside id="filtros">
+        <h2>Filtros</h2>
 
-        <section id="secao-produtos">
-            
-            <h1>Guitarras</h1>
-            
-            <ul id="lista-produtos">
-                </ul>
+        <div class="grupo-filtro">
+          <h3>Marca</h3>
 
-        </section>
+          <ul id="lista-marcas">
+            <li>
+                <input type="checkbox" id="marca-tagima" name="marca" value="Tagima">
+                <label for="marca-tagima">Tagima</label>
+            </li>
+            <li>
+                <input type="checkbox" id="marca-ibanez" name="marca" value="Ibanez">
+                <label for="marca-ibanez">Ibanez</label>
+            </li>
+            <li>
+                <input type="checkbox" id="marca-seizi" name="marca" value="Seizi">
+                <label for="marca-seizi">Seizi</label>
+            </li>
+        </ul>
+        </div>
+      </aside>
 
+      <section id="secao-produtos">
+        <h1>Guitarras</h1>
+
+        <ul id="lista-produtos"></ul>
+      </section>
     </main>
 
-    <footer>
-        </footer>
+    <footer></footer>
 
-    <script src="/Projeto Galeria com Filtros/main.js"></script>    
-</body>
+    <script src="/Projeto Galeria com Filtros/main.js"></script>
+  </body>
 </html>

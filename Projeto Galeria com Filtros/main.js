@@ -3,11 +3,15 @@
 const listaProdutosEl = document.getElementById("lista-produtos");
 const botao_compra = document.getElementById("bot_carrinho");
 const filtro = document.getElementById("filtros");
+const formatadorMoeda = new Intl.NumberFormat("pt-BR", {
+  style: "currency",
+  currency: "BRL",
+});
 
 const PRODUTOS = [
   {
     id: 1,
-    nome: "Guitarra Tagima Woodstock TG-530",
+    nome: "Tagima Woodstock TG-530",
     marca: "Tagima",
     secao: "Strato",
     preco: 1399,
@@ -22,60 +26,59 @@ const PRODUTOS = [
     secao: "6 Cordas",
     preco: 2100,
     imagemUrl: "/Projeto Galeria com Filtros/img/ibanez_grg121dx_bkf.jpg",
-    alt: "Imagem da guitarra Ibanez linha GIO, toda preta...", 
+    alt: "Imagem da guitarra Ibanez linha GIO, toda preta...",
   },
- {
+  {
     id: 3,
     nome: "Seizi Vintage Budokan HSS",
     marca: "Seizi",
     secao: "Strato",
-    preco: 3490.00,
+    preco: 3490.0,
     imagemUrl: "/Projeto Galeria com Filtros/img/Seizi_Vintage_Budokan_HSS.jpg",
-    alt: "Imagem da guitarra Seizi Vintage, na cor Ash. Guitarra conta com 2 singles e 1 humbucker na ponte. Sua ponte são 2 pivôs e contém alavanca."
+    alt: "Imagem da guitarra Seizi Vintage, na cor Ash. Guitarra conta com 2 singles e 1 humbucker na ponte. Sua ponte são 2 pivôs e contém alavanca.",
   },
   {
     id: 4,
     nome: "Tagima Grace 70 WHSPK (Cacau Santos)",
     marca: "Tagima",
-    secao: "Tele", // (Inferi 'Tele' pelo formato)
-    preco: 4199.00, // (Estimei um preço)
+    secao: "Tele",
+    preco: 4199.0,
     imagemUrl: "/Projeto Galeria com Filtros/img/tagima_grace_70_whspk.jpg",
-    alt: "Tagima Grace 70 WH SP. É uma guitarra Signature do talentosíssimo Cacau Santos. Com corpo estilo Tele, possui 2 Humbuckers Zaganin estilo CS. Ela ainda conta com tarraxas com trava, oferecendo afinações mais estáveis. Ponte Tremolo com 2 Pivôs. Disponível na cor White Sparkle. Acompanha Bag Tagima Trip Cool G."
+    alt: "Tagima Grace 70 WH SP. É uma guitarra Signature do talentosíssimo Cacau Santos. Com corpo estilo Tele, possui 2 Humbuckers Zaganin estilo CS. Ela ainda conta com tarraxas com trava, oferecendo afinações mais estáveis. Ponte Tremolo com 2 Pivôs. Disponível na cor White Sparkle. Acompanha Bag Tagima Trip Cool G.",
   },
   {
     id: 5,
     nome: "Seizi Budokan Reinaldo Meirelles - BK Gold",
     marca: "Seizi",
-    secao: "Superstrato", // (Inferi 'Superstrato' pelo formato)
-    preco: 4500.00, // (Estimei um preço)
-    imagemUrl: "/Projeto Galeria com Filtros/img/SZ_VintageBudokan_HSS_ReinaldoM.jpg",
-    alt: "Guitarra Seizi Budokan Reinaldo Meirelles Satin Black Gold, estilo superstrato, com captação HSS em Alnico V, ponte 2 pivôs, escala em maple no acabament preto fosco com ferragens douradas."
+    secao: "Superstrato",
+    preco: 4500.0,
+    imagemUrl:
+      "/Projeto Galeria com Filtros/img/SZ_VintageBudokan_HSS_ReinaldoM.jpg",
+    alt: "Guitarra Seizi Budokan Reinaldo Meirelles Satin Black Gold, estilo superstrato, com captação HSS em Alnico V, ponte 2 pivôs, escala em maple no acabament preto fosco com ferragens douradas.",
   },
   {
-    id:6,
+    id: 6,
     nome: "Seizi Budokan Reinaldo Meirelles - WH Gold",
     marca: "Seizi",
     secao: "Superstrato",
-    preco: 4800.00,
-    imagemUrl: "/Projeto Galeria com Filtros/img/SZ_VintageBudokanWH_HSS_ReinaldoM.jpg",
-    alt: "superstrato equipada com o histórico headstock Vintage, captadores em configuração HSS e ponte flutuante de 2 pivôs com alavanca. Mais especial ainda é essa edição especial feita em parceria com o guitarrista Reinaldo Meirelles. Disponível na cor preta fosca, ela vem com o headstock pintado na cor, com a assinatura do artista e várias das características do modelo Custom Shop que o Reinaldo Meirelles desenvolveu conosco para ter tudo o que ele precisa no palco e nos estúdios! Uma verdadeira obra-prima que certamente vai te conquistar."
-  }
+    preco: 4800.0,
+    imagemUrl:
+      "/Projeto Galeria com Filtros/img/SZ_VintageBudokanWH_HSS_ReinaldoM.jpg",
+    alt: "superstrato equipada com o histórico headstock Vintage, captadores em configuração HSS e ponte flutuante de 2 pivôs com alavanca. Mais especial ainda é essa edição especial feita em parceria com o guitarrista Reinaldo Meirelles. Disponível na cor preta fosca, ela vem com o headstock pintado na cor, com a assinatura do artista e várias das características do modelo Custom Shop que o Reinaldo Meirelles desenvolveu conosco para ter tudo o que ele precisa no palco e nos estúdios! Uma verdadeira obra-prima que certamente vai te conquistar.",
+  },
 ];
 // 2. Criamos a função que "renderiza" (desenha) os produtos
 function renderizarProdutos(produtosParaRenderizar) {
   // Limpa a lista antes de desenhar (para filtros futuros)
   listaProdutosEl.innerHTML = "";
 
-  // 3. Fazemos um loop em cada item do array
+  // um loop em cada item do array
   produtosParaRenderizar.forEach((produto) => {
-    // 4. Criamos um novo item de lista (<li>)
+    // novo item de lista (<li>)
     const cardProduto = document.createElement("li");
 
-    // 5. Adicionamos uma classe para estilizar no CSS depois
+    // Classe para estilizar no CSS depois
     cardProduto.className = "card-produto";
-
-    // 6. Criamos o HTML interno do card
-    // (Note como usamos os dados do objeto 'produto')
     cardProduto.innerHTML = `
             
             <img src="${produto.imagemUrl}" alt="${produto.alt}">
@@ -83,7 +86,7 @@ function renderizarProdutos(produtosParaRenderizar) {
             <h3>${produto.nome}</h3>
             <p class="marca">${produto.marca}</p>
             
-            <p class="preco">R$ ${produto.preco.toFixed(2).replace('.', ',')}</p>
+            <p class="preco">R$ ${formatadorMoeda.format(produto.preco)}</p>
             
             <button class="comprar-btn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -94,12 +97,34 @@ function renderizarProdutos(produtosParaRenderizar) {
                 <span>Comprar</span>
             </button>
         `;
-    // 7. Adicionamos o card (o <li>) pronto dentro da lista (a <ul>)
-    listaProdutosEl.appendChild(cardProduto);
 
-    /* botao_compra.addEventListener('click', function(){
-       console.log("Botão do carrinho funcionando!"); 
-})*/
+    // Adiciona o <li> pronto dentro da lista <ul>
+    listaProdutosEl.appendChild(cardProduto);
   });
 }
 renderizarProdutos(PRODUTOS);
+
+let marcasSelecionadas = [];
+
+const checkboxesMarca = document.querySelectorAll('input[name="marca"]');
+
+checkboxesMarca.forEach((checkbox) => {
+  checkbox.addEventListener("change", () => {
+    marcasSelecionadas = Array.from(checkboxesMarca)
+      .filter((cb) => cb.checked)
+      .map((cb) => cb.value);
+
+    aplicarFiltros();
+  });
+});
+
+function aplicarFiltros() {
+  let produtosFiltrados = PRODUTOS;
+
+  if (marcasSelecionadas.length > 0) {
+    produtosFiltrados = produtosFiltrados.filter((produto) => {
+      return marcasSelecionadas.includes(produto.marca);
+    });
+  }
+  renderizarProdutos(produtosFiltrados);
+}
