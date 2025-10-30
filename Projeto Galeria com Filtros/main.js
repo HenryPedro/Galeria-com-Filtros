@@ -66,6 +66,16 @@ const PRODUTOS = [
       "/Projeto Galeria com Filtros/img/SZ_VintageBudokanWH_HSS_ReinaldoM.jpg",
     alt: "superstrato equipada com o histórico headstock Vintage, captadores em configuração HSS e ponte flutuante de 2 pivôs com alavanca. Mais especial ainda é essa edição especial feita em parceria com o guitarrista Reinaldo Meirelles. Disponível na cor preta fosca, ela vem com o headstock pintado na cor, com a assinatura do artista e várias das características do modelo Custom Shop que o Reinaldo Meirelles desenvolveu conosco para ter tudo o que ele precisa no palco e nos estúdios! Uma verdadeira obra-prima que certamente vai te conquistar.",
   },
+  {
+    id: 7,
+    nome: "Ibanez JEM7VP-WH Signature Steve Vai",
+    marca: "Ibanez",
+    secao: "Superstrato",
+    preco: 28000,
+    imagemUrl:
+      "/Projeto Galeria com Filtros/img/Ibanez JEM7VP_StevieVai.webp",
+    alt: "A Ibanez JEM7VP-WH é uma guitarra signature desenvolvida em parceria com o lendário guitarrista Steve Vai, oferecendo um instrumento de altíssimo desempenho tanto em palco quanto em estúdio. Seu corpo em alder proporciona um timbre equilibrado, com excelente resposta em todas as frequências. A escala em ébano com 24 trastes jumbo e acabamento Premium Fret Edge Treatment garante uma tocabilidade suave e precisa, além de visual sofisticado com a clássica marcação Tree of Life. O braço Wizard de 5 peças em maple e nogueira com hastes de titânio KTS™ oferece estabilidade e conforto excepcionais para solos velozes e técnica avançada.Equipada com um trio de captadores DiMarzio® Evolution® — dois humbuckers (ponte e braço) e um single coil (meio) —, a JEM7VP-WH entrega versatilidade sonora e potência de sobra para diversos estilos, especialmente o rock e o metal. A ponte Edge com cavidade Lion's Claw permite alavancadas expressivas e estáveis, enquanto o famoso Monkey Grip proporciona estilo e praticidade. Com acabamento branco impecável e ferragens douradas, esta guitarra combina performance extrema com um visual marcante, ideal para músicos exigentes e fãs do estilo inconfundível de Steve Vai."
+  }
 ];
 // 2. Criamos a função que "renderiza" (desenha) os produtos
 function renderizarProdutos(produtosParaRenderizar) {
